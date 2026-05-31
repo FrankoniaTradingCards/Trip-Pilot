@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>TripPilot</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">TripPilot</div>
+      <a href="#planner" class="nav-button">Reise starten</a>
+    </nav>
+
+    <div class="hero-content">
+      <p class="eyebrow">Dein smarter Reisebegleiter</p>
+      <h1>Finde dein nächstes Reiseziel und baue daraus direkt deine Route.</h1>
+      <p>
+        Wähle mehrere Abflughäfen, einen Zeitraum, deine Interessen und eine Zielregion.
+        TripPilot bereitet dir passende Flugsuchen und erste Reiserouten vor.
+      </p>
+      <a href="#planner" class="primary-button">Jetzt planen</a>
+    </div>
+  </header>
+
+  <main id="planner" class="planner">
+
+    <section class="card">
+      <div class="section-head">
+        <span>01</span>
+        <div>
+          <h2>Abflughäfen wählen</h2>
+          <p>Wähle alle Flughäfen aus, die für dich realistisch wären.</p>
+        </div>
+      </div>
+
+      <div class="option-grid" id="departureOptions">
+        <label><input type="checkbox" value="NUE"> Nürnberg</label>
+        <label><input type="checkbox" value="MUC"> München</label>
+        <label><input type="checkbox" value="FRA"> Frankfurt</label>
+        <label><input type="checkbox" value="STR"> Stuttgart</label>
+        <label><input type="checkbox" value="DUS"> Düsseldorf</label>
+        <label><input type="checkbox" value="BER"> Berlin</label>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <span>02</span>
+        <div>
+          <h2>Zeitraum festlegen</h2>
+          <p>In V1 nutzen wir den Zeitraum für die Suchlinks und die Routenlogik.</p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div>
+          <label for="dateFrom">Frühester Hinflug</label>
+          <input type="date" id="dateFrom" class="date-input">
+        </div>
+
+        <div>
+          <label for="dateTo">Spätester Rückflug</label>
+          <input type="date" id="dateTo" class="date-input">
+        </div>
+
+        <div>
+          <label for="duration">Reisedauer</label>
+          <select id="duration">
+            <option value="5">4–5 Tage</option>
+            <option value="7">7 Tage</option>
+            <option value="12">10–14 Tage</option>
+            <option value="16">14+ Tage</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <span>03</span>
+        <div>
+          <h2>Zielregion wählen</h2>
+          <p>TripPilot schlägt dir passende Zielflughäfen aus der Region vor.</p>
+        </div>
+      </div>
+
+      <div class="option-grid" id="regionOptions">
+        <label><input type="radio" name="region" value="usa"> USA</label>
+        <label><input type="radio" name="region" value="europe"> Europa</label>
+        <label><input type="radio" name="region" value="asia"> Asien</label>
+      </div>
+    </section>
+
+    <section class="card hidden" id="citySelectionCard">
+      <div class="section-head">
+        <span>03.1</span>
+        <div>
+          <h2>Zielflughäfen auswählen</h2>
+          <p>Wähle die Städte aus, die TripPilot für deine Reise berücksichtigen soll.</p>
+        </div>
+      </div>
+
+      <div class="option-grid" id="cityOptions"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <span>04</span>
+        <div>
+          <h2>Interessen auswählen</h2>
+          <p>Damit TripPilot später nicht nur irgendeine Route baut, sondern eine passende.</p>
+        </div>
+      </div>
+
+      <div class="option-grid" id="interestOptions">
+        <label><input type="checkbox" value="nature"> Natur</label>
+        <label><input type="checkbox" value="city"> Städte</label>
+        <label><input type="checkbox" value="food"> Essen</label>
+        <label><input type="checkbox" value="sports"> Sport</label>
+        <label><input type="checkbox" value="events"> Events</label>
+        <label><input type="checkbox" value="roadtrip"> Roadtrip</label>
+        <label><input type="checkbox" value="beach"> Strand</label>
+        <label><input type="checkbox" value="culture"> Kultur</label>
+      </div>
+    </section>
+
+    <section class="actions">
+      <button id="generateBtn" class="primary-button">TripPilot starten</button>
+      <button id="resetBtn" class="secondary-button">Zurücksetzen</button>
+    </section>
+
+    <section id="results" class="results hidden">
+      <div class="section-title">
+        <p class="eyebrow">Deine Ergebnisse</p>
+        <h2>Passende Flug-Suchen & Routenvorschläge</h2>
+      </div>
+
+      <div id="summaryBox" class="summary-box"></div>
+
+      <div id="destinationResults" class="destination-grid"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>TripPilot V1 · Private Reiseplanung ohne Live-Flugpreise</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
