@@ -1,8 +1,34 @@
+const subregions = {
+  usa: [
+    { id: "usa-west", name: "Westküste" },
+    { id: "usa-east", name: "Ostküste" },
+    { id: "usa-florida", name: "Florida" },
+    { id: "usa-nationalparks", name: "Nationalparks & Roadtrips" },
+    { id: "usa-south", name: "Südstaaten" },
+    { id: "usa-midwest", name: "Midwest" }
+  ],
+
+  europe: [
+    { id: "europe-south", name: "Südeuropa" },
+    { id: "europe-west", name: "Westeuropa" },
+    { id: "europe-north", name: "Nordeuropa" },
+    { id: "europe-east", name: "Osteuropa" },
+    { id: "europe-roadtrip", name: "Roadtrip-Ziele" }
+  ],
+
+  asia: [
+    { id: "asia-japan", name: "Japan" },
+    { id: "asia-southeast", name: "Südostasien" },
+    { id: "asia-city", name: "Großstadt & Kultur" }
+  ]
+};
+
 const destinations = {
   usa: [
     {
       city: "New York",
       airport: "JFK",
+      subregions: ["usa-east"],
       description: "Perfekt für Städte, Sport, Events, Essen und klassische Sehenswürdigkeiten.",
       tags: ["city", "food", "sports", "events", "culture"],
       route: [
@@ -16,8 +42,57 @@ const destinations = {
       ]
     },
     {
+      city: "Boston",
+      airport: "BOS",
+      subregions: ["usa-east"],
+      description: "Gut für Geschichte, Stadt, Sport, Foodspots und Kombination mit New York.",
+      tags: ["city", "culture", "sports", "food"],
+      route: [
+        "Tag 1: Ankommen in Boston und Waterfront",
+        "Tag 2: Freedom Trail und Beacon Hill",
+        "Tag 3: Harvard, Cambridge und Foodspots",
+        "Tag 4: Sportevent oder Museumstag",
+        "Tag 5: Tagesausflug Salem oder Cape Cod",
+        "Tag 6: Entspannter Stadtteil-Tag",
+        "Tag 7: Rückflug oder Weiterreise nach New York"
+      ]
+    },
+    {
+      city: "Washington D.C.",
+      airport: "IAD",
+      subregions: ["usa-east"],
+      description: "Sehr gut für Geschichte, Museen, Politik, Kultur und Kombination mit New York.",
+      tags: ["city", "culture", "food"],
+      route: [
+        "Tag 1: Ankommen in Washington D.C.",
+        "Tag 2: National Mall, Lincoln Memorial und Washington Monument",
+        "Tag 3: Smithsonian Museen",
+        "Tag 4: Georgetown und Foodspots",
+        "Tag 5: Arlington oder Alexandria",
+        "Tag 6: Weiterreise nach Philadelphia oder New York",
+        "Tag 7: Rückflug oder Weiterreise"
+      ]
+    },
+    {
+      city: "Philadelphia",
+      airport: "PHL",
+      subregions: ["usa-east"],
+      description: "Gutes Ziel für Geschichte, Foodspots, Sport und als Zwischenstopp an der Ostküste.",
+      tags: ["city", "culture", "food", "sports"],
+      route: [
+        "Tag 1: Ankommen in Philadelphia",
+        "Tag 2: Liberty Bell, Independence Hall und Old City",
+        "Tag 3: Reading Terminal Market und Museum District",
+        "Tag 4: Sportevent oder Foodtour",
+        "Tag 5: Tagesausflug Richtung Washington oder New York",
+        "Tag 6: Entspannter Stadtteil-Tag",
+        "Tag 7: Rückflug oder Weiterreise"
+      ]
+    },
+    {
       city: "Los Angeles",
       airport: "LAX",
+      subregions: ["usa-west", "usa-roadtrip"],
       description: "Gut für Roadtrip, Strand, Filmkultur, Sport und Kalifornien-Vibes.",
       tags: ["roadtrip", "beach", "sports", "city", "food"],
       route: [
@@ -31,38 +106,9 @@ const destinations = {
       ]
     },
     {
-      city: "Las Vegas",
-      airport: "LAS",
-      description: "Sehr stark für USA-Roadtrips mit Grand Canyon, Zion, Bryce Canyon und Death Valley.",
-      tags: ["roadtrip", "nature", "events", "food"],
-      route: [
-        "Tag 1: Ankunft in Las Vegas und Strip erkunden",
-        "Tag 2: Hoover Dam und Valley of Fire",
-        "Tag 3: Zion National Park",
-        "Tag 4: Bryce Canyon",
-        "Tag 5: Grand Canyon South Rim",
-        "Tag 6: Zurück nach Las Vegas, Show oder Event",
-        "Tag 7: Rückflug oder Weiterfahrt nach Los Angeles"
-      ]
-    },
-    {
-      city: "Miami",
-      airport: "MIA",
-      description: "Gut für Strand, Essen, Florida-Rundreise und entspannte Tage.",
-      tags: ["beach", "food", "city", "nature"],
-      route: [
-        "Tag 1: Ankommen in Miami Beach",
-        "Tag 2: Wynwood, Little Havana und South Beach",
-        "Tag 3: Everglades National Park",
-        "Tag 4: Key Largo oder Islamorada",
-        "Tag 5: Key West Tagesausflug oder Übernachtung",
-        "Tag 6: Zurück nach Miami, Strand und gutes Essen",
-        "Tag 7: Rückflug"
-      ]
-    },
-    {
       city: "San Francisco",
       airport: "SFO",
+      subregions: ["usa-west", "usa-nationalparks"],
       description: "Sehr gut für Kalifornien-Roadtrip, Natur, Foodspots und Highway 1.",
       tags: ["roadtrip", "nature", "city", "food"],
       route: [
@@ -76,38 +122,25 @@ const destinations = {
       ]
     },
     {
-      city: "Chicago",
-      airport: "ORD",
-      description: "Gut für Städte, Sport, Architektur, Foodspots und etwas günstigere USA-Citytrips.",
-      tags: ["city", "sports", "food", "culture"],
+      city: "Las Vegas",
+      airport: "LAS",
+      subregions: ["usa-west", "usa-nationalparks"],
+      description: "Sehr stark für USA-Roadtrips mit Grand Canyon, Zion, Bryce Canyon und Death Valley.",
+      tags: ["roadtrip", "nature", "events", "food"],
       route: [
-        "Tag 1: Ankommen in Chicago und Riverwalk",
-        "Tag 2: Architektur-Bootstour und Millennium Park",
-        "Tag 3: Museum Campus und Lake Michigan",
-        "Tag 4: Sportevent oder Konzert",
-        "Tag 5: Foodtour mit Deep Dish Pizza und lokalen Spots",
-        "Tag 6: Tagesausflug oder entspannter Stadtteil-Tag",
-        "Tag 7: Rückflug"
-      ]
-    },
-    {
-      city: "Orlando",
-      airport: "MCO",
-      description: "Gut für Freizeitparks, Florida-Rundreise, Strandkombinationen und Roadtrips.",
-      tags: ["events", "roadtrip", "beach", "food"],
-      route: [
-        "Tag 1: Ankommen in Orlando",
-        "Tag 2: Freizeitpark oder Disney Springs",
-        "Tag 3: Universal oder weiterer Freizeitpark",
-        "Tag 4: Fahrt Richtung Tampa oder Clearwater",
-        "Tag 5: Strandtag an der Golfküste",
-        "Tag 6: Rückfahrt nach Orlando",
-        "Tag 7: Rückflug"
+        "Tag 1: Ankunft in Las Vegas und Strip erkunden",
+        "Tag 2: Hoover Dam und Valley of Fire",
+        "Tag 3: Zion National Park",
+        "Tag 4: Bryce Canyon",
+        "Tag 5: Grand Canyon South Rim",
+        "Tag 6: Zurück nach Las Vegas, Show oder Event",
+        "Tag 7: Rückflug oder Weiterfahrt nach Los Angeles"
       ]
     },
     {
       city: "Seattle",
       airport: "SEA",
+      subregions: ["usa-west", "usa-nationalparks"],
       description: "Sehr gut für Natur, Stadt, Kaffee, Sport und Trips Richtung Nationalparks.",
       tags: ["nature", "city", "sports", "food"],
       route: [
@@ -121,18 +154,195 @@ const destinations = {
       ]
     },
     {
-      city: "Boston",
-      airport: "BOS",
-      description: "Gut für Geschichte, Stadt, Sport, Foodspots und Kombination mit New York.",
-      tags: ["city", "culture", "sports", "food"],
+      city: "San Diego",
+      airport: "SAN",
+      subregions: ["usa-west"],
+      description: "Entspannter Mix aus Strand, Stadt, Foodspots und Südkalifornien.",
+      tags: ["beach", "city", "food", "roadtrip"],
       route: [
-        "Tag 1: Ankommen in Boston und Waterfront",
-        "Tag 2: Freedom Trail und Beacon Hill",
-        "Tag 3: Harvard, Cambridge und Foodspots",
-        "Tag 4: Sportevent oder Museumstag",
-        "Tag 5: Tagesausflug Salem oder Cape Cod",
+        "Tag 1: Ankommen in San Diego und Gaslamp Quarter",
+        "Tag 2: La Jolla und Pacific Beach",
+        "Tag 3: Balboa Park und Old Town",
+        "Tag 4: Coronado Island",
+        "Tag 5: Tagesausflug Richtung Temecula oder Joshua Tree",
+        "Tag 6: Strand- und Foodtag",
+        "Tag 7: Rückflug oder Weiterfahrt nach Los Angeles"
+      ]
+    },
+    {
+      city: "Denver",
+      airport: "DEN",
+      subregions: ["usa-nationalparks", "usa-west"],
+      description: "Sehr gut für Rocky Mountains, Natur, Roadtrips und Outdoor-Reisen.",
+      tags: ["nature", "roadtrip", "city", "food"],
+      route: [
+        "Tag 1: Ankommen in Denver",
+        "Tag 2: Denver Downtown und Foodspots",
+        "Tag 3: Rocky Mountain National Park",
+        "Tag 4: Boulder",
+        "Tag 5: Red Rocks und Umgebung",
+        "Tag 6: Scenic Drive oder Wandertag",
+        "Tag 7: Rückflug oder Weiterreise"
+      ]
+    },
+    {
+      city: "Phoenix",
+      airport: "PHX",
+      subregions: ["usa-nationalparks", "usa-west"],
+      description: "Guter Startpunkt für Arizona, Sedona, Grand Canyon und Wüsten-Roadtrips.",
+      tags: ["nature", "roadtrip", "food"],
+      route: [
+        "Tag 1: Ankommen in Phoenix",
+        "Tag 2: Scottsdale und Desert Botanical Garden",
+        "Tag 3: Sedona",
+        "Tag 4: Grand Canyon South Rim",
+        "Tag 5: Flagstaff oder Page",
+        "Tag 6: Zurück Richtung Phoenix",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Salt Lake City",
+      airport: "SLC",
+      subregions: ["usa-nationalparks", "usa-west"],
+      description: "Perfekter Ausgangspunkt für Utah-Nationalparks und große Roadtrips.",
+      tags: ["nature", "roadtrip"],
+      route: [
+        "Tag 1: Ankommen in Salt Lake City",
+        "Tag 2: Antelope Island oder Stadt erkunden",
+        "Tag 3: Fahrt Richtung Moab",
+        "Tag 4: Arches National Park",
+        "Tag 5: Canyonlands National Park",
+        "Tag 6: Scenic Drive zurück",
+        "Tag 7: Rückflug oder Weiterreise"
+      ]
+    },
+    {
+      city: "Miami",
+      airport: "MIA",
+      subregions: ["usa-florida"],
+      description: "Gut für Strand, Essen, Florida-Rundreise und entspannte Tage.",
+      tags: ["beach", "food", "city", "nature"],
+      route: [
+        "Tag 1: Ankommen in Miami Beach",
+        "Tag 2: Wynwood, Little Havana und South Beach",
+        "Tag 3: Everglades National Park",
+        "Tag 4: Key Largo oder Islamorada",
+        "Tag 5: Key West Tagesausflug oder Übernachtung",
+        "Tag 6: Zurück nach Miami, Strand und gutes Essen",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Orlando",
+      airport: "MCO",
+      subregions: ["usa-florida"],
+      description: "Gut für Freizeitparks, Florida-Rundreise, Strandkombinationen und Roadtrips.",
+      tags: ["events", "roadtrip", "beach", "food"],
+      route: [
+        "Tag 1: Ankommen in Orlando",
+        "Tag 2: Freizeitpark oder Disney Springs",
+        "Tag 3: Universal oder weiterer Freizeitpark",
+        "Tag 4: Fahrt Richtung Tampa oder Clearwater",
+        "Tag 5: Strandtag an der Golfküste",
+        "Tag 6: Rückfahrt nach Orlando",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Tampa",
+      airport: "TPA",
+      subregions: ["usa-florida"],
+      description: "Gut für Golfküste, Strand, Foodspots und Kombination mit Orlando oder Miami.",
+      tags: ["beach", "food", "roadtrip"],
+      route: [
+        "Tag 1: Ankommen in Tampa",
+        "Tag 2: Ybor City und Riverwalk",
+        "Tag 3: Clearwater Beach",
+        "Tag 4: St. Petersburg",
+        "Tag 5: Sarasota oder Anna Maria Island",
+        "Tag 6: Entspannter Strandtag",
+        "Tag 7: Rückflug oder Weiterreise"
+      ]
+    },
+    {
+      city: "Nashville",
+      airport: "BNA",
+      subregions: ["usa-south"],
+      description: "Sehr gut für Musik, Essen, Nachtleben und Südstaaten-Vibes.",
+      tags: ["food", "events", "city", "culture"],
+      route: [
+        "Tag 1: Ankommen in Nashville und Broadway",
+        "Tag 2: Country Music Hall of Fame und Downtown",
+        "Tag 3: Live-Musik und Foodspots",
+        "Tag 4: Tagesausflug oder Whiskey-Distillery",
+        "Tag 5: Sportevent oder Konzert",
         "Tag 6: Entspannter Stadtteil-Tag",
-        "Tag 7: Rückflug oder Weiterreise nach New York"
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "New Orleans",
+      airport: "MSY",
+      subregions: ["usa-south"],
+      description: "Stark für Musik, Essen, Kultur, Geschichte und besondere Atmosphäre.",
+      tags: ["food", "events", "culture", "city"],
+      route: [
+        "Tag 1: Ankommen im French Quarter",
+        "Tag 2: French Quarter, Jackson Square und Musikbars",
+        "Tag 3: Garden District und Foodtour",
+        "Tag 4: Swamp Tour oder Plantagen-Ausflug",
+        "Tag 5: Jazz-Abend und lokale Spots",
+        "Tag 6: Entspannter Stadtteil-Tag",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Austin",
+      airport: "AUS",
+      subregions: ["usa-south"],
+      description: "Gut für Musik, BBQ, Events, junge Stadt und Texas-Roadtrips.",
+      tags: ["food", "events", "city", "roadtrip"],
+      route: [
+        "Tag 1: Ankommen in Austin",
+        "Tag 2: Downtown, South Congress und Foodtrucks",
+        "Tag 3: BBQ-Tour und Live-Musik",
+        "Tag 4: Tagesausflug San Antonio",
+        "Tag 5: Barton Springs oder Hill Country",
+        "Tag 6: Sportevent oder Konzert",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Chicago",
+      airport: "ORD",
+      subregions: ["usa-midwest"],
+      description: "Gut für Städte, Sport, Architektur, Foodspots und etwas günstigere USA-Citytrips.",
+      tags: ["city", "sports", "food", "culture"],
+      route: [
+        "Tag 1: Ankommen in Chicago und Riverwalk",
+        "Tag 2: Architektur-Bootstour und Millennium Park",
+        "Tag 3: Museum Campus und Lake Michigan",
+        "Tag 4: Sportevent oder Konzert",
+        "Tag 5: Foodtour mit Deep Dish Pizza und lokalen Spots",
+        "Tag 6: Tagesausflug oder entspannter Stadtteil-Tag",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Minneapolis",
+      airport: "MSP",
+      subregions: ["usa-midwest"],
+      description: "Unterschätztes Ziel für Seen, Stadt, Sport, Foodspots und entspannte Citytrips.",
+      tags: ["city", "sports", "food", "nature"],
+      route: [
+        "Tag 1: Ankommen in Minneapolis",
+        "Tag 2: Downtown und Mississippi Riverfront",
+        "Tag 3: Chain of Lakes",
+        "Tag 4: Sportevent oder Mall of America",
+        "Tag 5: Tagesausflug nach St. Paul",
+        "Tag 6: Foodspots und entspannter Tag",
+        "Tag 7: Rückflug"
       ]
     }
   ],
@@ -141,6 +351,7 @@ const destinations = {
     {
       city: "Porto",
       airport: "OPO",
+      subregions: ["europe-south", "europe-roadtrip"],
       description: "Sehr gut für Essen, Stadt, Roadtrip und entspannte Portugal-Routen.",
       tags: ["food", "city", "roadtrip", "culture"],
       route: [
@@ -154,8 +365,25 @@ const destinations = {
       ]
     },
     {
+      city: "Lissabon",
+      airport: "LIS",
+      subregions: ["europe-south", "europe-roadtrip"],
+      description: "Sehr gut für Stadt, Essen, Küste, Kultur und Portugal-Rundreisen.",
+      tags: ["city", "food", "culture", "beach"],
+      route: [
+        "Tag 1: Ankommen in Lissabon und Alfama",
+        "Tag 2: Belém, LX Factory und Aussichtspunkte",
+        "Tag 3: Sintra",
+        "Tag 4: Cascais und Küste",
+        "Tag 5: Foodspots und Bairro Alto",
+        "Tag 6: Tagesausflug oder Strand",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
       city: "Barcelona",
       airport: "BCN",
+      subregions: ["europe-south"],
       description: "Starker Mix aus Stadt, Strand, Essen, Kultur und Nachtleben.",
       tags: ["city", "beach", "food", "culture", "events"],
       route: [
@@ -169,8 +397,153 @@ const destinations = {
       ]
     },
     {
+      city: "Madrid",
+      airport: "MAD",
+      subregions: ["europe-south"],
+      description: "Gut für Essen, Kultur, Fußball, Museen und Stadtleben.",
+      tags: ["city", "food", "culture", "sports"],
+      route: [
+        "Tag 1: Ankommen in Madrid",
+        "Tag 2: Palacio Real, Plaza Mayor und Foodspots",
+        "Tag 3: Prado oder Reina Sofía",
+        "Tag 4: Fußballstadion oder Event",
+        "Tag 5: Tagesausflug Toledo",
+        "Tag 6: Stadtviertel und Tapas",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Rom",
+      airport: "FCO",
+      subregions: ["europe-south"],
+      description: "Perfekt für Geschichte, Essen, Kultur und klassische Sehenswürdigkeiten.",
+      tags: ["city", "food", "culture"],
+      route: [
+        "Tag 1: Ankommen in Rom und Trastevere",
+        "Tag 2: Kolosseum und Forum Romanum",
+        "Tag 3: Vatikan und Engelsburg",
+        "Tag 4: Foodtour und Altstadt",
+        "Tag 5: Tagesausflug Tivoli oder Ostia Antica",
+        "Tag 6: Entspannter letzter Stadt-Tag",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Athen",
+      airport: "ATH",
+      subregions: ["europe-south"],
+      description: "Gut für Kultur, Geschichte, Essen und Kombination mit Inseln.",
+      tags: ["culture", "food", "city", "beach"],
+      route: [
+        "Tag 1: Ankommen in Athen",
+        "Tag 2: Akropolis und Plaka",
+        "Tag 3: Foodspots und Stadtviertel",
+        "Tag 4: Tagesausflug Kap Sounion",
+        "Tag 5: Inseloption Ägina oder Hydra",
+        "Tag 6: Entspannter Stadt- oder Strandtag",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Palma de Mallorca",
+      airport: "PMI",
+      subregions: ["europe-south", "europe-roadtrip"],
+      description: "Gut für Strand, Berge, Roadtrip, Essen und kurze Auszeiten.",
+      tags: ["beach", "nature", "roadtrip", "food"],
+      route: [
+        "Tag 1: Ankommen in Palma",
+        "Tag 2: Palma Altstadt und Foodspots",
+        "Tag 3: Sóller und Port de Sóller",
+        "Tag 4: Cap Formentor",
+        "Tag 5: Strandtag oder kleine Buchten",
+        "Tag 6: Valldemossa und Deià",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Split",
+      airport: "SPU",
+      subregions: ["europe-south", "europe-roadtrip"],
+      description: "Gut für Küste, Inseln, Altstadt, Natur und Kroatien-Roadtrips.",
+      tags: ["beach", "city", "culture", "nature"],
+      route: [
+        "Tag 1: Ankommen in Split",
+        "Tag 2: Diokletianpalast und Altstadt",
+        "Tag 3: Insel Hvar oder Brač",
+        "Tag 4: Krka Nationalpark",
+        "Tag 5: Trogir",
+        "Tag 6: Strand- oder Bootstag",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "London",
+      airport: "LHR",
+      subregions: ["europe-west"],
+      description: "Sehr gut für Stadt, Kultur, Sport, Events, Essen und Klassiker.",
+      tags: ["city", "culture", "sports", "events", "food"],
+      route: [
+        "Tag 1: Ankommen in London und South Bank",
+        "Tag 2: Westminster, Buckingham Palace und Soho",
+        "Tag 3: Camden, Shoreditch oder Notting Hill",
+        "Tag 4: Museum oder Fußballspiel",
+        "Tag 5: Greenwich oder Richmond",
+        "Tag 6: Shopping, Foodspots oder Konzert",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Amsterdam",
+      airport: "AMS",
+      subregions: ["europe-west"],
+      description: "Gut für Stadt, Kultur, Foodspots, kurze Trips und entspannte Wege.",
+      tags: ["city", "culture", "food"],
+      route: [
+        "Tag 1: Ankommen in Amsterdam und Grachten",
+        "Tag 2: Jordaan, Museen und Foodspots",
+        "Tag 3: Fahrradtour oder Noord",
+        "Tag 4: Tagesausflug Haarlem oder Zandvoort",
+        "Tag 5: Märkte und entspannter Tag",
+        "Tag 6: Utrecht oder Den Haag",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Paris",
+      airport: "CDG",
+      subregions: ["europe-west"],
+      description: "Klassiker für Stadt, Essen, Kultur, Museen und besondere Atmosphäre.",
+      tags: ["city", "food", "culture"],
+      route: [
+        "Tag 1: Ankommen in Paris",
+        "Tag 2: Eiffelturm, Seine und Louvre-Umgebung",
+        "Tag 3: Montmartre und Foodspots",
+        "Tag 4: Versailles oder Museumstag",
+        "Tag 5: Le Marais und Notre-Dame Umgebung",
+        "Tag 6: Freier Tag für Viertel und Cafés",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Dublin",
+      airport: "DUB",
+      subregions: ["europe-west", "europe-roadtrip"],
+      description: "Gut für Pubkultur, Küste, Roadtrips und entspannte Irland-Routen.",
+      tags: ["city", "culture", "roadtrip", "food"],
+      route: [
+        "Tag 1: Ankommen in Dublin",
+        "Tag 2: Temple Bar, Trinity College und Guinness Storehouse",
+        "Tag 3: Howth oder Küstenwanderung",
+        "Tag 4: Wicklow Mountains",
+        "Tag 5: Galway-Option oder Stadt-Tag",
+        "Tag 6: Pub- und Foodspots",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
       city: "Edinburgh",
       airport: "EDI",
+      subregions: ["europe-north", "europe-roadtrip"],
       description: "Gut für Natur, Stadt, Pubkultur und kleinere Roadtrips in Schottland.",
       tags: ["nature", "city", "culture", "roadtrip"],
       route: [
@@ -182,6 +555,102 @@ const destinations = {
         "Tag 6: Edinburgh Foodspots und Pubs",
         "Tag 7: Rückflug"
       ]
+    },
+    {
+      city: "Kopenhagen",
+      airport: "CPH",
+      subregions: ["europe-north"],
+      description: "Sehr gut für Design, Essen, Stadt, Wasser und entspannte Kurztrips.",
+      tags: ["city", "food", "culture"],
+      route: [
+        "Tag 1: Ankommen in Kopenhagen",
+        "Tag 2: Nyhavn, Innenstadt und Foodspots",
+        "Tag 3: Fahrradtour und Christiania",
+        "Tag 4: Tivoli oder Museen",
+        "Tag 5: Tagesausflug Malmö",
+        "Tag 6: Hafen, Cafés und entspannter Tag",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Stockholm",
+      airport: "ARN",
+      subregions: ["europe-north"],
+      description: "Gut für Stadt, Wasser, Kultur, Foodspots und nordische Atmosphäre.",
+      tags: ["city", "culture", "food", "nature"],
+      route: [
+        "Tag 1: Ankommen in Stockholm",
+        "Tag 2: Gamla Stan und Wasserwege",
+        "Tag 3: Vasa Museum und Djurgården",
+        "Tag 4: Schären-Ausflug",
+        "Tag 5: Södermalm und Foodspots",
+        "Tag 6: Entspannter Stadt-Tag",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Oslo",
+      airport: "OSL",
+      subregions: ["europe-north", "europe-roadtrip"],
+      description: "Gut für Natur, Stadt, Fjordgefühl und Norwegen-Startpunkte.",
+      tags: ["nature", "city", "culture"],
+      route: [
+        "Tag 1: Ankommen in Oslo",
+        "Tag 2: Oper, Hafen und Innenstadt",
+        "Tag 3: Museen und Grünerløkka",
+        "Tag 4: Fjord-Ausflug",
+        "Tag 5: Natur- oder Wandertag",
+        "Tag 6: Foodspots und entspannter Tag",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Prag",
+      airport: "PRG",
+      subregions: ["europe-east"],
+      description: "Gut für Stadt, Kultur, Essen, Bier und günstige Citytrips.",
+      tags: ["city", "culture", "food"],
+      route: [
+        "Tag 1: Ankommen in Prag und Altstadt",
+        "Tag 2: Karlsbrücke, Burg und Mala Strana",
+        "Tag 3: Foodspots und Bierkultur",
+        "Tag 4: Tagesausflug Kutná Hora",
+        "Tag 5: Stadtviertel und Aussichtspunkte",
+        "Tag 6: Entspannter Tag",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Budapest",
+      airport: "BUD",
+      subregions: ["europe-east"],
+      description: "Gut für Stadt, Essen, Thermalbäder, Kultur und günstige Trips.",
+      tags: ["city", "food", "culture"],
+      route: [
+        "Tag 1: Ankommen in Budapest",
+        "Tag 2: Burgviertel und Donauufer",
+        "Tag 3: Pest, Markthalle und Foodspots",
+        "Tag 4: Thermalbad und Ruin Bars",
+        "Tag 5: Tagesausflug oder Museum",
+        "Tag 6: Entspannter letzter Tag",
+        "Tag 7: Rückflug"
+      ]
+    },
+    {
+      city: "Krakau",
+      airport: "KRK",
+      subregions: ["europe-east"],
+      description: "Sehr gut für Geschichte, Essen, Kultur und günstige Städtetrips.",
+      tags: ["city", "culture", "food"],
+      route: [
+        "Tag 1: Ankommen in Krakau",
+        "Tag 2: Altstadt und Wawel",
+        "Tag 3: Kazimierz und Foodspots",
+        "Tag 4: Tagesausflug Wieliczka",
+        "Tag 5: Optional Auschwitz-Birkenau",
+        "Tag 6: Entspannter Stadt-Tag",
+        "Tag 7: Rückflug"
+      ]
     }
   ],
 
@@ -189,6 +658,7 @@ const destinations = {
     {
       city: "Tokyo",
       airport: "HND",
+      subregions: ["asia-japan", "asia-city"],
       description: "Perfekt für Essen, Stadt, Kultur, Events und komplett andere Eindrücke.",
       tags: ["city", "food", "culture", "events"],
       route: [
@@ -202,8 +672,25 @@ const destinations = {
       ]
     },
     {
+      city: "Osaka",
+      airport: "KIX",
+      subregions: ["asia-japan", "asia-city"],
+      description: "Sehr gut für Essen, Kultur, Kyoto-Kombi und Japan-Routen.",
+      tags: ["food", "city", "culture"],
+      route: [
+        "Tag 1: Ankommen in Osaka",
+        "Tag 2: Dotonbori und Foodspots",
+        "Tag 3: Kyoto Tagesausflug",
+        "Tag 4: Nara Tagesausflug",
+        "Tag 5: Osaka Castle und Stadtviertel",
+        "Tag 6: Kobe oder weiterer Kyoto-Tag",
+        "Tag 7: Rückflug oder Weiterreise"
+      ]
+    },
+    {
       city: "Bangkok",
       airport: "BKK",
+      subregions: ["asia-southeast", "asia-city"],
       description: "Sehr gut für Essen, Kultur, Nachtleben und günstige Weiterreisen.",
       tags: ["food", "city", "culture", "events"],
       route: [
@@ -215,6 +702,22 @@ const destinations = {
         "Tag 6: Freier Tag oder Weiterreise Richtung Inseln",
         "Tag 7: Rückflug oder Weiterflug"
       ]
+    },
+    {
+      city: "Singapur",
+      airport: "SIN",
+      subregions: ["asia-southeast", "asia-city"],
+      description: "Gut für Essen, Skyline, Kulturmix und kurze Asien-Stopps.",
+      tags: ["city", "food", "culture"],
+      route: [
+        "Tag 1: Ankommen in Singapur",
+        "Tag 2: Marina Bay und Gardens by the Bay",
+        "Tag 3: Chinatown, Little India und Hawker Center",
+        "Tag 4: Sentosa oder Stadtviertel",
+        "Tag 5: Foodtour",
+        "Tag 6: Entspannter letzter Tag",
+        "Tag 7: Rückflug oder Weiterreise"
+      ]
     }
   ]
 };
@@ -225,7 +728,9 @@ const airportNames = {
   FRA: "Frankfurt",
   STR: "Stuttgart",
   DUS: "Düsseldorf",
-  BER: "Berlin"
+  BER: "Berlin",
+  CGN: "Köln/Bonn",
+  HAM: "Hamburg"
 };
 
 const generateBtn = document.getElementById("generateBtn");
@@ -233,6 +738,8 @@ const resetBtn = document.getElementById("resetBtn");
 const results = document.getElementById("results");
 const summaryBox = document.getElementById("summaryBox");
 const destinationResults = document.getElementById("destinationResults");
+const subregionSelectionCard = document.getElementById("subregionSelectionCard");
+const subregionOptions = document.getElementById("subregionOptions");
 const citySelectionCard = document.getElementById("citySelectionCard");
 const cityOptions = document.getElementById("cityOptions");
 
@@ -241,6 +748,7 @@ resetBtn.addEventListener("click", resetPlanner);
 
 document.querySelectorAll('input[name="region"]').forEach(regionInput => {
   regionInput.addEventListener("change", () => {
+    renderSubregionOptions(regionInput.value);
     renderCityOptions(regionInput.value);
   });
 });
@@ -264,17 +772,52 @@ function getSelectedRegion() {
   return selected ? selected.value : null;
 }
 
+function renderSubregionOptions(region) {
+  const regionSubregions = subregions[region] || [];
+
+  subregionOptions.innerHTML = "";
+
+  if (regionSubregions.length === 0) {
+    subregionSelectionCard.classList.add("hidden");
+    return;
+  }
+
+  regionSubregions.forEach(subregion => {
+    const label = document.createElement("label");
+
+    label.innerHTML = `
+      <input type="checkbox" value="${subregion.id}" checked>
+      ${subregion.name}
+    `;
+
+    label.querySelector("input").addEventListener("change", () => {
+      renderCityOptions(region);
+    });
+
+    subregionOptions.appendChild(label);
+  });
+
+  subregionSelectionCard.classList.remove("hidden");
+}
+
 function renderCityOptions(region) {
-  const regionDestinations = destinations[region];
+  const regionDestinations = destinations[region] || [];
+  const selectedSubregions = getCheckedValues("#subregionOptions input");
 
   cityOptions.innerHTML = "";
 
-  if (!regionDestinations || regionDestinations.length === 0) {
+  const filteredDestinations = selectedSubregions.length > 0
+    ? regionDestinations.filter(destination =>
+        destination.subregions.some(subregion => selectedSubregions.includes(subregion))
+      )
+    : regionDestinations;
+
+  if (filteredDestinations.length === 0) {
     citySelectionCard.classList.add("hidden");
     return;
   }
 
-  regionDestinations.forEach(destination => {
+  filteredDestinations.forEach(destination => {
     const label = document.createElement("label");
 
     label.innerHTML = `
@@ -292,6 +835,7 @@ function generateTrip() {
   const departures = getCheckedValues("#departureOptions input");
   const interests = getCheckedValues("#interestOptions input");
   const region = getSelectedRegion();
+  const selectedSubregions = getCheckedValues("#subregionOptions input");
   const selectedCities = getCheckedValues("#cityOptions input");
   const dateFrom = document.getElementById("dateFrom").value;
   const dateTo = document.getElementById("dateTo").value;
@@ -309,6 +853,11 @@ function generateTrip() {
 
   if (!region) {
     alert("Bitte wähle eine Zielregion aus.");
+    return;
+  }
+
+  if (selectedSubregions.length === 0) {
+    alert("Bitte wähle mindestens eine Unterregion aus.");
     return;
   }
 
@@ -334,25 +883,28 @@ function generateTrip() {
     })
     .sort((a, b) => b.score - a.score);
 
-  renderSummary(departures, region, dateFrom, dateTo, duration, interests, selectedCities);
+  renderSummary(departures, region, selectedSubregions, dateFrom, dateTo, duration, interests, selectedCities);
   renderDestinations(scoredDestinations, departures, dateFrom, dateTo);
 
   results.classList.remove("hidden");
   results.scrollIntoView({ behavior: "smooth" });
 }
 
-function renderSummary(departures, region, dateFrom, dateTo, duration, interests, selectedCities) {
+function renderSummary(departures, region, selectedSubregions, dateFrom, dateTo, duration, interests, selectedCities) {
   const departureText = departures.map(code => airportNames[code]).join(", ");
+
   const interestText = interests.length > 0
     ? interests.map(translateTag).join(", ")
     : "keine speziellen Interessen gewählt";
 
+  const subregionText = selectedSubregions.map(getSubregionName).join(", ");
   const cityText = selectedCities.join(", ");
 
   summaryBox.innerHTML = `
     <strong>Deine Suche:</strong><br>
     Abflughäfen: ${departureText}<br>
     Zielregion: ${getRegionName(region)}<br>
+    Unterregionen: ${subregionText}<br>
     Gewählte Zielflughäfen: ${cityText}<br>
     Zeitraum: ${formatDate(dateFrom)} bis ${formatDate(dateTo)}<br>
     Reisedauer: ${getDurationLabel(duration)}<br>
@@ -438,6 +990,13 @@ function getRegionName(region) {
   return names[region] || region;
 }
 
+function getSubregionName(subregionId) {
+  const allSubregions = Object.values(subregions).flat();
+  const found = allSubregions.find(subregion => subregion.id === subregionId);
+
+  return found ? found.name : subregionId;
+}
+
 function translateTag(tag) {
   const translations = {
     nature: "Natur",
@@ -476,184 +1035,14 @@ function createRouteByDuration(destination, duration) {
     return baseRoute.slice(0, duration);
   }
 
-  const extraDays = {
-    "New York": [
-      "Tag 8: Tagesausflug nach Philadelphia oder Washington D.C.",
-      "Tag 9: Foodtour durch Queens oder Brooklyn",
-      "Tag 10: Museumstag mit MET oder American Museum of Natural History",
-      "Tag 11: Sportevent, Broadway oder Konzert",
-      "Tag 12: Jersey City, Hoboken und Skyline-Spots",
-      "Tag 13: Freier Tag für Shopping oder Lieblingsviertel",
-      "Tag 14: Entspannter letzter Tag und Rückflugvorbereitung",
-      "Tag 15: Optionaler Zusatztag für Boston oder Washington D.C.",
-      "Tag 16: Rückflug oder Weiterreise"
-    ],
-
-    "Los Angeles": [
-      "Tag 8: Start Roadtrip Richtung Santa Barbara",
-      "Tag 9: Santa Barbara und Pismo Beach",
-      "Tag 10: Highway 1 Richtung Monterey",
-      "Tag 11: Big Sur und Carmel-by-the-Sea",
-      "Tag 12: San Francisco Ankunft",
-      "Tag 13: San Francisco erkunden",
-      "Tag 14: Tagesausflug Muir Woods oder Sausalito",
-      "Tag 15: Freier Tag für Sportevent oder Foodspots",
-      "Tag 16: Rückflug oder Weiterreise"
-    ],
-
-    "Las Vegas": [
-      "Tag 8: Death Valley National Park",
-      "Tag 9: Fahrt Richtung Mammoth Lakes oder Lone Pine",
-      "Tag 10: Yosemite National Park",
-      "Tag 11: Weiterfahrt Richtung San Francisco",
-      "Tag 12: San Francisco erkunden",
-      "Tag 13: Highway 1 Richtung Monterey",
-      "Tag 14: Santa Barbara oder Malibu",
-      "Tag 15: Los Angeles Abschluss",
-      "Tag 16: Rückflug oder Weiterreise"
-    ],
-
-    "Miami": [
-      "Tag 8: Fort Lauderdale oder Palm Beach",
-      "Tag 9: Fahrt Richtung Orlando",
-      "Tag 10: Freizeitpark oder Orlando erkunden",
-      "Tag 11: Tampa oder Clearwater Beach",
-      "Tag 12: Sarasota oder Naples",
-      "Tag 13: Zurück Richtung Miami",
-      "Tag 14: Entspannter Strandtag",
-      "Tag 15: Letzte Foodspots und Shopping",
-      "Tag 16: Rückflug oder Weiterreise"
-    ],
-
-    "San Francisco": [
-      "Tag 8: Yosemite National Park",
-      "Tag 9: Yosemite oder Weiterfahrt Richtung Lake Tahoe",
-      "Tag 10: Lake Tahoe",
-      "Tag 11: Napa Valley oder Sacramento",
-      "Tag 12: Zurück nach San Francisco",
-      "Tag 13: Mission District, Haight-Ashbury und Foodspots",
-      "Tag 14: Sportevent oder Tagesausflug",
-      "Tag 15: Letzter Tag am Wasser",
-      "Tag 16: Rückflug oder Weiterreise"
-    ],
-
-    "Chicago": [
-      "Tag 8: Tagesausflug nach Milwaukee",
-      "Tag 9: Weitere Architektur- und Foodspots",
-      "Tag 10: Sportevent oder Konzert",
-      "Tag 11: Museumstag",
-      "Tag 12: Stadtviertel erkunden",
-      "Tag 13: Lake Michigan und entspannter Tag",
-      "Tag 14: Optionaler Zugtrip oder Outlet-Shopping",
-      "Tag 15: Letzter voller Tag in Chicago",
-      "Tag 16: Rückflug oder Weiterreise"
-    ],
-
-    "Orlando": [
-      "Tag 8: Weiterfahrt nach Miami",
-      "Tag 9: Miami Beach und Wynwood",
-      "Tag 10: Everglades National Park",
-      "Tag 11: Key Largo",
-      "Tag 12: Key West",
-      "Tag 13: Zurück Richtung Miami",
-      "Tag 14: Strandtag",
-      "Tag 15: Letzter Food- und Shoppingtag",
-      "Tag 16: Rückflug oder Weiterreise"
-    ],
-
-    "Seattle": [
-      "Tag 8: Olympic National Park",
-      "Tag 9: Olympic Peninsula Roadtrip",
-      "Tag 10: Portland Anreise",
-      "Tag 11: Portland Foodspots und Stadt",
-      "Tag 12: Columbia River Gorge",
-      "Tag 13: Rückfahrt Richtung Seattle",
-      "Tag 14: Mount Rainier oder entspannter Stadt-Tag",
-      "Tag 15: Sportevent oder letzter Ausflug",
-      "Tag 16: Rückflug oder Weiterreise"
-    ],
-
-    "Boston": [
-      "Tag 8: Fahrt oder Zug nach New York",
-      "Tag 9: New York Midtown und Central Park",
-      "Tag 10: Brooklyn und Williamsburg",
-      "Tag 11: Sportevent oder Broadway",
-      "Tag 12: Rückfahrt nach Boston oder Weiterreise",
-      "Tag 13: Cape Cod oder Salem",
-      "Tag 14: Entspannter Boston-Tag",
-      "Tag 15: Letzter Stadt- und Foodtag",
-      "Tag 16: Rückflug oder Weiterreise"
-    ],
-
-    "Porto": [
-      "Tag 8: Nazaré oder Óbidos",
-      "Tag 9: Algarve Anreise",
-      "Tag 10: Lagos und Ponta da Piedade",
-      "Tag 11: Sagres und Westküste",
-      "Tag 12: Entspannter Strandtag",
-      "Tag 13: Rückfahrt Richtung Lissabon",
-      "Tag 14: Letzter Tag in Lissabon",
-      "Tag 15: Freier Puffertag",
-      "Tag 16: Rückflug oder Weiterreise"
-    ],
-
-    "Barcelona": [
-      "Tag 8: Girona Tagesausflug",
-      "Tag 9: Costa Brava",
-      "Tag 10: Tarragona",
-      "Tag 11: Valencia Anreise",
-      "Tag 12: Valencia Altstadt und Strand",
-      "Tag 13: Foodspots und Stadtviertel",
-      "Tag 14: Rückfahrt oder Weiterreise",
-      "Tag 15: Freier Puffertag",
-      "Tag 16: Rückflug"
-    ],
-
-    "Edinburgh": [
-      "Tag 8: Fahrt Richtung Isle of Skye",
-      "Tag 9: Isle of Skye erkunden",
-      "Tag 10: Highlands Roadtrip",
-      "Tag 11: Inverness oder Loch Ness",
-      "Tag 12: Cairngorms National Park",
-      "Tag 13: Rückfahrt Richtung Edinburgh",
-      "Tag 14: Freier Tag in Edinburgh",
-      "Tag 15: Pub, Foodspots oder letzter Ausflug",
-      "Tag 16: Rückflug"
-    ],
-
-    "Tokyo": [
-      "Tag 8: Nikko Tagesausflug",
-      "Tag 9: Hakone oder Fuji-Region",
-      "Tag 10: Kyoto Anreise",
-      "Tag 11: Kyoto Tempel und Gion",
-      "Tag 12: Arashiyama und Fushimi Inari",
-      "Tag 13: Osaka Tagesausflug",
-      "Tag 14: Nara Tagesausflug",
-      "Tag 15: Zurück nach Tokyo",
-      "Tag 16: Rückflug oder Weiterreise"
-    ],
-
-    "Bangkok": [
-      "Tag 8: Weiterreise nach Chiang Mai",
-      "Tag 9: Chiang Mai Altstadt und Tempel",
-      "Tag 10: Naturausflug oder Kochkurs",
-      "Tag 11: Weiterreise Richtung Inseln",
-      "Tag 12: Strandtag",
-      "Tag 13: Bootsausflug",
-      "Tag 14: Entspannter letzter Inseltag",
-      "Tag 15: Rückreise nach Bangkok",
-      "Tag 16: Rückflug"
-    ]
-  };
-
-  const additions = extraDays[destination.city] || [
-    "Tag 8: Zusätzlicher entspannter Erkundungstag",
+  const additions = [
+    `Tag 8: Zusätzlicher Tag in ${destination.city} mit Fokus auf deine Interessen`,
     "Tag 9: Tagesausflug in die Umgebung",
-    "Tag 10: Freier Tag für spontane Aktivitäten",
-    "Tag 11: Weitere Sehenswürdigkeiten passend zu deinen Interessen",
-    "Tag 12: Entspannter Reisetag",
-    "Tag 13: Lokale Foodspots und Stadtviertel",
-    "Tag 14: Puffertag",
+    "Tag 10: Entspannter Reisetag mit weniger Programm",
+    "Tag 11: Weitere Sehenswürdigkeiten oder lokaler Geheimtipp",
+    "Tag 12: Foodspots, Stadtviertel oder Naturausflug",
+    "Tag 13: Freier Tag für spontane Aktivitäten",
+    "Tag 14: Puffertag für Wetter, Events oder längere Fahrten",
     "Tag 15: Letzter voller Reisetag",
     "Tag 16: Rückflug oder Weiterreise"
   ];
@@ -670,7 +1059,10 @@ function resetPlanner() {
   document.getElementById("dateTo").value = "";
   document.getElementById("duration").value = "5";
 
+  subregionOptions.innerHTML = "";
   cityOptions.innerHTML = "";
+
+  subregionSelectionCard.classList.add("hidden");
   citySelectionCard.classList.add("hidden");
 
   results.classList.add("hidden");

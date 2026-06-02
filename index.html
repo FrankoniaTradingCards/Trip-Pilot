@@ -45,6 +45,8 @@
         <label><input type="checkbox" value="STR"> Stuttgart</label>
         <label><input type="checkbox" value="DUS"> Düsseldorf</label>
         <label><input type="checkbox" value="BER"> Berlin</label>
+        <label><input type="checkbox" value="CGN"> Köln/Bonn</label>
+        <label><input type="checkbox" value="HAM"> Hamburg</label>
       </div>
     </section>
 
@@ -85,7 +87,7 @@
         <span>03</span>
         <div>
           <h2>Zielregion wählen</h2>
-          <p>TripPilot schlägt dir passende Zielflughäfen aus der Region vor.</p>
+          <p>Wähle erst die grobe Zielregion. Danach kannst du tiefer filtern.</p>
         </div>
       </div>
 
@@ -96,9 +98,21 @@
       </div>
     </section>
 
-    <section class="card hidden" id="citySelectionCard">
+    <section class="card hidden" id="subregionSelectionCard">
       <div class="section-head">
         <span>03.1</span>
+        <div>
+          <h2>Unterregion wählen</h2>
+          <p>Grenze deine Suche weiter ein. Mehrfachauswahl ist möglich.</p>
+        </div>
+      </div>
+
+      <div class="option-grid" id="subregionOptions"></div>
+    </section>
+
+    <section class="card hidden" id="citySelectionCard">
+      <div class="section-head">
+        <span>03.2</span>
         <div>
           <h2>Zielflughäfen auswählen</h2>
           <p>Wähle die Städte aus, die TripPilot für deine Reise berücksichtigen soll.</p>
